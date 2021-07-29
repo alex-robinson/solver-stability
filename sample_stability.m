@@ -10,7 +10,7 @@ experiment = 'weak';
 solver     = 'diva';
 
 % Calculate and save the sample (true), or simply load a saved version (false)?
-run_sample = true; 
+run_sample = false; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -172,13 +172,13 @@ if (run_sample)
     res.fac = res.fac(kk);
 
     % Save output table
-    save(['sampled_' solver '_' experiment '.mat'], '-struct', 'res')
+    save(['output/','sampled_' solver '_' experiment '.mat'], '-struct', 'res')
     
 else
     % Load sample from saved .mat file
     
     % Load output table
-    load(['sampled_' solver '_' experiment '.mat'])
+    load(['output/','sampled_' solver '_' experiment '.mat'])
     clear res;
     res.dx  = dx;
     res.dt  = dt;
