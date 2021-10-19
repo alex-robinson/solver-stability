@@ -24,7 +24,7 @@ N = round(L/delx);
 delx = L/N;
 
 if (Lm > 0.2 * L);
-    error('membranse stress too long for domain');
+    error('membrane stress too long for domain');
 end
 
 h = epsh * randn(N,1);
@@ -50,12 +50,11 @@ for i = 1:nt;
  u_ext = [u(end); u; u(1)];
  H_ext = [H(end); H];
  H_ext2 = [H(end); H; H(1)];
- %h = h + u0 * del_t/delx * (h_ext(1:end-1)-h_ext(2:end)) - H0 * del_t/delx * diff(u_ext);
- %flux = (u_ext .* H_ext);
 
  Hmid = (H(1:end-1)+H(2:end))/2;
- uav = u + Hmid.^2/3 .* ...
-	 (4/delx^2 * (-2*u_ext(2:end-1)+u_ext(1:end-2)+u_ext(3:end)) - rhog/eta*(diff(H)/delx - alpha));
+ uav = u + ...
+     Hmid.^2/3 .* (4/delx^2 * (-2*u_ext(2:end-1)+u_ext(1:end-2)+u_ext(3:end)) - rhog/eta*(diff(H)/delx - alpha)) + ...
+     2 * Hmid.^2 .* (diff(H)/delx - alpha) .* (-u_ext(1:end-2)+u_ext(3:end))/2/delx;
  uav_ext = [uav(end); uav; uav(1)];
  flux = (uav_ext .* H_ext);
  

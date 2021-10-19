@@ -4,13 +4,13 @@ clear all;
 % User options
 
 % Choose experiment (weak, strong): 
-experiment = 'weak';
+experiment = 'strong';
 
 % Choose solver (diva, hybrid, l1l2):
-solver     = 'diva';
+solver     = 'l1l2';
 
 % Calculate and save the sample (true), or simply load a saved version (false)?
-run_sample = false; 
+run_sample = true; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
