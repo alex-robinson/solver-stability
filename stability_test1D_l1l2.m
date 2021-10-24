@@ -54,7 +54,7 @@ for i = 1:nt;
  Hmid = (H(1:end-1)+H(2:end))/2;
  uav = u + ...
      Hmid.^2/3 .* (4/delx^2 * (-2*u_ext(2:end-1)+u_ext(1:end-2)+u_ext(3:end)) - rhog/eta*(diff(H)/delx - alpha)) + ...
-     2 * Hmid.^2 .* (diff(H)/delx - alpha) .* (-u_ext(1:end-2)+u_ext(3:end))/2/delx;
+     2 * Hmid .* (diff(H)/delx - alpha) .* (-u_ext(1:end-2)+u_ext(3:end))/2/delx;
  uav_ext = [uav(end); uav; uav(1)];
  flux = (uav_ext .* H_ext);
  
